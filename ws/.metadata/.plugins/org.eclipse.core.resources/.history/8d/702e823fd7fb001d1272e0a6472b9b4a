@@ -1,0 +1,164 @@
+package controllers;
+
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import model.Estudiante;
+import model.TipoGenero;
+
+public class EstudianteController implements Initializable {
+
+    ObservableList<Estudiante> listaEstudiantesDiplomado = FXCollections.observableArrayList();
+    Estudiante estudianteSeleccionado;
+
+    @FXML
+    private TableColumn<Estudiante, Double> columnNota1;
+
+    @FXML
+    private TableColumn<Estudiante, Double> columnNota3;
+
+    @FXML
+    private TableColumn<Estudiante, Double> columnNota2;
+
+    @FXML
+    private TableView<Estudiante> tableEstudiantes;
+
+    @FXML
+    private TableColumn<Estudiante, String> columnNombre;
+
+    @FXML
+    private Button btnAgregar;
+
+    @FXML
+    private TextField txtIdentificacion;
+
+    @FXML
+    private TableColumn<Estudiante, Double> columnPromedio;
+
+    @FXML
+    private ComboBox<String> tipoGeneroComboBox;
+
+    @FXML
+    private TextField txtNota3;
+
+    @FXML
+    private TextField txtNota2;
+
+    @FXML
+    private TextField txtNota4;
+
+    @FXML
+    private TextField txtNota1;
+
+    @FXML
+    private TableColumn<Estudiante, String> columnIdentificacion;
+
+    @FXML
+    private TableColumn<Estudiante, Double> columnNota4;
+
+    @FXML
+    private TextField txtNombreEstudiante;
+
+    @FXML
+    private TableColumn<Estudiante, TipoGenero> columnGenero;
+
+    private Stage stage;
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    @FXML
+    void agregarEstudianteEvent(ActionEvent event) {
+        agregarEstudianteDiplomado();
+    }
+
+    private void agregarEstudianteDiplomado() {
+        String nombres = txtNombreEstudiante.getText();
+        TipoGenero genero = TipoGenero.valueOf(txtGenero.getText().toUpperCase());
+        String identificacion = txtIdentificacion.getText();
+        double nota1 = Double.parseDouble(txtNota1.getText());
+        double nota2 = Double.parseDouble(txtNota2.getText());
+        double nota3 = Double.parseDouble(txtNota3.getText());
+        double nota4 = Double.parseDouble(txtNota4.getText());
+        ArrayList<Float> listaNotas = new ArrayList<>();
+        // Agregar notas a listaNotas si es necesario
+
+        Estudiante estudiante = new Estudiante(nombres, genero, identificacion, nota1, nota2, nota3, nota4, 0.0, listaNotas);
+        listaEstudiantesDiplomado.add(estudiante);
+        tableEstudiantes.setItems(listaEstudiantesDiplomado);
+        calcularPromedio(estudiante);
+    }
+
+    private void calcularPromedio(Estudiante estudiante) {
+        double promedio = (estudiante.getNota1() + estudiante.getNota2() + estudiante.getNota3() + estudiante.getNota4()) / 4;
+        estudiante.setPromedio(promedio);
+    }
+
+    private void mostrarEstudianteConMayorPromedio() {
+        if (listaEstudiantesDiplomado.isEmpty()) {
+            System.out.println("No hay estudiantes inscritos en el diplomado.");
+            return;
+        }
+
+        Estudiante estudianteConMayorPromedio = listaEstudiantesDiplomado.get(0);
+        for (Estudiante estudiante : listaEstudiantesDiplomado) {
+            if (estudiante.getPromedio() > estudianteConMayorPromedio.getPromedio()) {
+                estudianteConMayorPromedio = estudiante;
+            }
+        }
+
+        System.out.println("El estudiante con el promedio de notas más alto es: " + estudianteConMayorPromedio.getNombre());
+    }
+
+    private double calcularPromedioEstudiante(String identificacion) {
+        for (Estudiante estudiante : listaEstudiantesDiplomado) {
+            if (estudiante.getIdentificacion().equals(identificacion)) {
+                return estudiante.getPromedio();
+            }
+        }
+
+        return 0.0; // Retornar un valor predeterminado si no se encuentra el estudiante
+    }
+
+    private double calcularPromedioTotal() {
+        if (listaEstudiantesDiplomado.isEmpty()) {
+            return 0.0;
+        }
+
+        double sumaPromedios = 0.0;
+        for (Estudiante estudiante : listaEstudiantesDiplomado) {
+            sumaPromedios += estudiante.getPromedio();
+        }
+
+        return sumaPromedios / listaEstudiantesDiplomado.size();
+    }
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        this.columnNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        this.columnIdentificacion.setCellValueFactory(new PropertyValueFactory<>("identificacion"));
+        this.columnGenero.setCellValueFactory(new PropertyValueFactory<>("genero"));
+        this.columnNota1.setCellValueFactory(new PropertyValueFactory<>("nota1"));
+        this.columnNota2.setCellValueFactory(new PropertyValueFactory<>("nota2"));
+        this.columnNota3.setCellValueFactory(new PropertyValueFactory<>("nota3"));
+        this.columnNota4.setCellValueFactory(new PropertyValueFactory<>("nota4"));
+        this.columnPromedio.setCellValueFactory(new PropertyValueFactory<>("promedio"));
+    }
+
+
+}
+

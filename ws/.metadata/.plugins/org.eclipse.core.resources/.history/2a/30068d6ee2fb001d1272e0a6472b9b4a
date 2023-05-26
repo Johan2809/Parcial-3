@@ -1,0 +1,127 @@
+package controllers;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import model.Estudiante;
+import model.TipoGenero;
+
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+public class EstudianteController implements Initializable {
+
+    @FXML
+    private TableView<Estudiante> tableEstudiantes;
+
+    @FXML
+    private TableColumn<Estudiante, String> columnNombre;
+
+    @FXML
+    private TableColumn<Estudiante, String> columnIdentificacion;
+
+    @FXML
+    private TableColumn<Estudiante, TipoGenero> columnGenero;
+
+    @FXML
+    private TableColumn<Estudiante, Double> columnNota1;
+
+    @FXML
+    private TableColumn<Estudiante, Double> columnNota2;
+
+    @FXML
+    private TableColumn<Estudiante, Double> columnNota3;
+
+    @FXML
+    private TableColumn<Estudiante, Double> columnNota4;
+
+    @FXML
+    private TableColumn<Estudiante, Double> columnPromedio;
+
+    @FXML
+    private TextField txtNombreEstudiante;
+
+    @FXML
+    private ComboBox<String> TipoGeneroComboBox;
+
+    @FXML
+    private TextField txtIdentificacion;
+
+    @FXML
+    private TextField txtNota1;
+
+    @FXML
+    private TextField txtNota2;
+
+    @FXML
+    private TextField txtNota3;
+
+    @FXML
+    private TextField txtNota4;
+
+    @FXML
+    private Button btnAgregar;
+
+    private ObservableList<Estudiante> listaEstudiantesDiplomado;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        listaEstudiantesDiplomado = FXCollections.observableArrayList();
+        initializeTableColumns();
+        initializeTipoGeneroComboBox();
+        tableEstudiantes.setItems(listaEstudiantesDiplomado);
+    }
+
+    private void initializeTableColumns() {
+        columnNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        columnIdentificacion.setCellValueFactory(new PropertyValueFactory<>("identificacion"));
+        columnGenero.setCellValueFactory(new PropertyValueFactory<>("genero"));
+        columnNota1.setCellValueFactory(new PropertyValueFactory<>("nota1"));
+        columnNota2.setCellValueFactory(new PropertyValueFactory<>("nota2"));
+        columnNota3.setCellValueFactory(new PropertyValueFactory<>("nota3"));
+        columnNota4.setCellValueFactory(new PropertyValueFactory<>("nota4"));
+        columnPromedio.setCellValueFactory(new PropertyValueFactory<>("promedio"));
+    }
+
+    private void initializeTipoGeneroComboBox() {
+        TipoGeneroComboBox.getItems().addAll("Hombre", "Mujer");
+    }
+
+    @FXML
+    void agregarEstudianteEvent(ActionEvent event) {
+        agregarEstudianteDiplomado();
+    }
+
+    private void agregarEstudianteDiplomado() {
+        String nombres = txtNombreEstudiante.getText();
+        TipoGenero genero = TipoGenero.valueOf(TipoGeneroComboBox.getValue().toUpperCase());
+        String identificacion = txtIdentificacion.getText();
+        double nota1 = Double.parseDouble(txtNota1.getText());
+        double nota2 = Double.parseDouble(txtNota2.getText());
+        double nota3 = Double.parseDouble(txtNota3.getText());
+        double nota4 = Double.parseDouble(txtNota4.getText());
+        ArrayList<Float> listaNotas = new ArrayList<>();
+        // Agregar notas a listaNotas si es necesario
+
+        Estudiante estudiante = new Estudiante(nombres, genero, identificacion, nota1,nota2, nota3, nota4, 0.0, listaNotas);
+        listaEstudiantesDiplomado.add(estudiante);
+
+        // Limpiar los campos de entrada
+        txtNombreEstudiante.clear();
+        TipoGeneroComboBox.getSelectionModel().clearSelection();
+        txtIdentificacion.clear();
+        txtNota1.clear();
+        txtNota2.clear();
+        txtNota3.clear();
+        txtNota4.clear();
+    }
+}

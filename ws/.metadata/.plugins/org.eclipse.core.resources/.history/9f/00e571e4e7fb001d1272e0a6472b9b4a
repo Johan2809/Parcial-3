@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="656.0" prefWidth="493.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EstudianteController">
+    <children>
+        <TabPane layoutX="14.0" layoutY="14.0" prefHeight="601.0" prefWidth="475.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Estudiantes">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="556.0" prefWidth="475.0">
+                            <children>
+                                <SplitPane dividerPositions="0.5565410199556541" layoutX="14.0" layoutY="14.0" orientation="VERTICAL" prefHeight="546.0" prefWidth="454.0">
+                                    <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="261.0" prefWidth="452.0">
+                                            <children>
+                                                <Separator layoutY="29.0" prefHeight="1.0" prefWidth="438.0" />
+                                                <Label layoutX="14.0" layoutY="6.0" text="Informacion del Estudiante" textFill="#4227c9">
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label layoutX="20.0" layoutY="46.0" text="Nombre :" textFill="#4227c9">
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="txtNombreEstudiante" layoutX="103.0" layoutY="44.0" prefHeight="25.0" prefWidth="316.0" />
+                                                <Label layoutX="18.0" layoutY="95.0" text="Genero" textFill="#4227c9">
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label layoutX="11.0" layoutY="139.0" prefHeight="20.0" prefWidth="99.0" text="Identificacion" textFill="#4227c9">
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="txtIdentificacion" layoutX="103.0" layoutY="131.0" prefHeight="25.0" prefWidth="316.0" />
+                                                <Separator layoutX="14.0" layoutY="247.0" prefHeight="5.0" prefWidth="421.0" />
+                                                <Button fx:id="btnAgregar" layoutX="177.0" layoutY="252.0" mnemonicParsing="false" onAction="#agregarEstudianteEvent" prefHeight="25.0" prefWidth="96.0" text="Agregar" />
+                                                <TextField fx:id="txtNota1" layoutX="61.0" layoutY="192.0" prefHeight="0.0" prefWidth="55.0" />
+                                                <Label layoutX="11.0" layoutY="201.0" prefHeight="20.0" prefWidth="59.0" text="Nota1" textFill="#4227c9">
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label layoutX="125.0" layoutY="201.0" text="Nota2" textFill="#4227c9">
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="txtNota2" layoutX="169.0" layoutY="192.0" prefHeight="0.0" prefWidth="47.0" />
+                                                <Label layoutX="226.0" layoutY="201.0" text="Nota3" textFill="#4227c9">
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="txtNota3" layoutX="273.0" layoutY="192.0" prefHeight="13.0" prefWidth="52.0" />
+                                                <Label layoutX="328.0" layoutY="201.0" text="Nota4" textFill="#4227c9">
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="txtNota4" layoutX="377.0" layoutY="192.0" prefHeight="39.0" prefWidth="54.0" />
+                                                <ComboBox fx:id="TipoGeneroComboBox" layoutX="102.0" layoutY="86.0" prefHeight="14.0" prefWidth="125.0" />
+                                                <Button fx:id="btnCalcularPromedio" layoutX="177.0" layoutY="322.0" mnemonicParsing="false" onAction="#calcularPromedioEvent" prefHeight="25.0" prefWidth="96.0" text="Calcular Promedio" />
+                                                <Button fx:id="btnEstudiantePromedioAlto" layoutX="177.0" layoutY="357.0" mnemonicParsing="false" onAction="#estudiantePromedioAltoEvent" prefHeight="25.0" prefWidth="96.0" text="Estudiante Promedio Alto" />
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="223.0" prefWidth="452.0">
+                                            <children>
+                                                <TableView fx:id="tableEstudiantes" layoutY="24.0" prefHeight="138.0" prefWidth="452.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="columnNombre" prefWidth="86.0" text="Nombre" />
+                                                        <TableColumn fx:id="columnIdentificacion" prefWidth="71.0" text="Id" />
+                                                        <TableColumn fx:id="columnGenero" minWidth="3.0" prefWidth="66.0" text="Gen" />
+                                                        <TableColumn fx:id="columnNota1" prefWidth="32.0" text="N1" />
+                                                        <TableColumn fx:id="columnNota2" minWidth="9.0" prefWidth="34.0" text="N2" />
+                                                        <TableColumn fx:id="columnNota3" minWidth="0.0" prefWidth="34.0" text="N3" />
+                                                        <TableColumn fx:id="columnNota4" minWidth="0.0" prefWidth="36.0" text="N4" />
+                                                        <TableColumn fx:id="columnPromedio" minWidth="0.0" prefWidth="90.0" text="Promedio" />
+                                                    </columns>
+                                                </TableView>
+                                                <Label layoutX="20.0" layoutY="4.0" text="Listado de Estudiantes con el diplomado" textFill="#4227c9">
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <Button fx:id="btnMostrarListado" layoutX="84.0" layoutY="171.0" mnemonicParsing="false" onAction="#mostrarListadoEvent" prefHeight="39.0" prefWidth="233.0" text="Mostrar Listado" />
+                                            </children>
+                                        </AnchorPane>
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>

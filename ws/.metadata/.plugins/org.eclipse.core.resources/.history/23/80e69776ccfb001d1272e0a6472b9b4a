@@ -1,0 +1,54 @@
+package model;
+
+import java.util.ArrayList;
+
+public class Estudiante {
+	private String nombre;
+	private TipoGenero genero;
+	private String identificacion;
+	private ArrayList<Float> listaNotas;
+
+	public Estudiante() {
+		super();
+	}
+
+	public Estudiante(String nombre, TipoGenero genero, String identificacion) {
+		super();
+		this.nombre = nombre;
+		this.genero = genero;
+		this.identificacion = identificacion;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public TipoGenero getGenero() {
+		return genero;
+	}
+
+	public void setGenero(TipoGenero genero) {
+		this.genero = genero;
+	}
+
+	public String getIdentificacion() {
+		return identificacion;
+	}
+
+	public void setIdentificacion(String identificacion) {
+		this.identificacion = identificacion;
+	}
+
+	public ArrayList<Float> getListaNotas() {
+		return listaNotas;
+	}
+
+	public void setListaNotas(ArrayList<Float> listaNotas) {
+		this.listaNotas = listaNotas;
+	}
+
+}

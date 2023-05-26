@@ -1,0 +1,22 @@
+package model;
+
+import java.util.ArrayList;
+
+public class Diplomado {
+	private String nombre;
+	private int cupo;
+	ArrayList<Estudiante>listadaEstudiantes;
+	
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public int getCupo() {
+		return cupo;
+	}
+	public void setCupo(int cupo) {
+		this.cupo = cupo;
+	}
+}

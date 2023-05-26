@@ -1,0 +1,87 @@
+package model;
+
+import java.util.ArrayList;
+
+public class Estudiante {
+	private String nombre;
+	private TipoGenero genero;
+	private String identificacion;
+	private double nota1;
+	private double nota2;
+	private double nota3;
+	private double nota4;
+	private double Promedio;
+	private ArrayList<Float> listaNotas;
+
+	public Estudiante(String nombre, TipoGenero genero, String identificacion, double nota1, double nota2, double nota3,
+			double nota4, double promedio, ArrayList<Float> listaNotas) {
+		super();
+		this.nombre = nombre;
+		this.genero = genero;
+		this.identificacion = identificacion;
+		this.nota1 = nota1;
+		this.nota2 = nota2;
+		this.nota3 = nota3;
+		this.nota4 = nota4;
+		Promedio = promedio;
+		this.listaNotas = listaNotas;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public TipoGenero getGenero() {
+		return genero;
+	}
+	public void setGenero(TipoGenero genero) {
+		this.genero = genero;
+	}
+	public String getIdentificacion() {
+		return identificacion;
+	}
+	public void setIdentificacion(String identificacion) {
+		this.identificacion = identificacion;
+	}
+	public double getNota1() {
+		return nota1;
+	}
+	public void setNota1(double nota1) {
+		this.nota1 = nota1;
+	}
+	public double getNota2() {
+		return nota2;
+	}
+	public void setNota2(double nota2) {
+		this.nota2 = nota2;
+	}
+	public double getNota3() {
+		return nota3;
+	}
+	public void setNota3(double nota3) {
+		this.nota3 = nota3;
+	}
+	public double getNota4() {
+		return nota4;
+	}
+	public void setNota4(double nota4) {
+		this.nota4 = nota4;
+	}
+	public double getPromedio() {
+		return Promedio;
+	}
+	public void setPromedio(double promedio) {
+		Promedio = promedio;
+	}
+	public ArrayList<Float> getListaNotas() {
+		return listaNotas;
+	}
+	public void setListaNotas(ArrayList<Float> listaNotas) {
+		this.listaNotas = listaNotas;
+	}
+
+
+
+}
